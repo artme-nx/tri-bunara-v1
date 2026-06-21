@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pizzeria Tri Bunara — Zadar | Pizza iz krušne peći od 1976.</title>
+<meta name="description" content="Pizzeria Tri Bunara u srcu Zadra — tijesto sazrijevano polako, pizza iz krušne peći, domaća pasta i dalmatinsko-talijanska kuhinja. Ime nosimo po Trgu tri bunara, kamenom srcu staroga grada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --stone:#EFE9DD; --stone-2:#E5DDCB; --brick:#9E3B26; --brick-dk:#7E2C1C;
+  --olive:#6B6A3C; --charcoal:#2B2622; --ink:#1E1A16; --cream:#FBF8F1;
+  --muted:#6E6457; --line:rgba(43,38,34,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;background:var(--stone);color:var(--charcoal);
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:500;line-height:1.08;letter-spacing:-.01em}
+.serif-display{font-family:'Cormorant',serif}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--brick);font-weight:600}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .4s,box-shadow .4s,padding .4s;padding:22px 0}
+header.scrolled{background:rgba(239,233,221,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding:14px 0}
+.nav{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:13px;font-family:'Fraunces',serif;font-size:1.22rem;font-weight:600;letter-spacing:.01em}
+.brand .wells{display:flex;gap:4px}
+.brand .wells i{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--brick);display:block}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{font-size:.86rem;letter-spacing:.04em;color:var(--charcoal);font-weight:500;transition:color .25s}
+.nav-links a:hover{color:var(--brick)}
+.cta{background:var(--brick);color:var(--cream)!important;padding:11px 22px;border-radius:30px;font-size:.82rem;font-weight:600;letter-spacing:.04em;transition:background .3s,transform .3s}
+.cta:hover{background:var(--brick-dk);transform:translateY(-2px)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+.burger span{width:24px;height:2px;background:var(--charcoal);transition:.3s}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding-bottom:7vh;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.08)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,26,22,.42) 0%,rgba(30,26,22,.18) 38%,rgba(239,233,221,.05) 70%,var(--stone) 100%)}
+.hero-inner{position:relative;z-index:2;width:100%}
+.hero h1{font-size:clamp(2.9rem,8vw,6.4rem);color:var(--cream);font-weight:500;max-width:14ch}
+.hero h1 em{font-family:'Cormorant',serif;font-style:italic;font-weight:500;color:#F2D9A8}
+.hero .lead{margin-top:22px;max-width:46ch;color:rgba(251,248,241,.92);font-size:clamp(1rem,1.5vw,1.18rem);font-weight:300}
+.hero .hero-eyebrow{color:#F2D9A8}
+.hero-meta{margin-top:34px;display:flex;gap:30px;flex-wrap:wrap;align-items:center}
+.hero-meta a.cta{padding:14px 30px;font-size:.9rem}
+.hero-meta .ph{color:var(--cream);font-size:.92rem;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
+.hero-wells{position:absolute;top:18vh;right:6vw;z-index:2;display:flex;gap:18px}
+.hero-wells i{width:clamp(34px,5vw,58px);height:clamp(34px,5vw,58px);border-radius:50%;border:1.5px solid rgba(242,217,168,.6);display:block}
+.hero-wells i:nth-child(2){margin-top:34px}
+
+/* SECTIONS */
+section{position:relative}
+.pad{padding:clamp(80px,12vh,140px) 0}
+.sec-head{max-width:720px;margin-bottom:54px}
+.sec-head h2{font-size:clamp(2.1rem,4.4vw,3.6rem);margin-top:16px}
+.sec-head p{margin-top:18px;color:var(--muted);font-size:1.06rem;max-width:54ch}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(34px)}
+.clip{clip-path:inset(0 0 100% 0)}
+
+/* MANIFEST */
+.manifest{background:var(--cream)}
+.manifest-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+.manifest-grid .big{font-family:'Cormorant',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);line-height:1.32;font-weight:500;color:var(--ink)}
+.manifest-grid .big strong{color:var(--brick);font-weight:600}
+.manifest-grid p{margin-top:22px;color:var(--muted);font-size:1.02rem}
+.manifest-photo{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/5}
+.manifest-photo img{width:100%;height:100%;object-fit:cover}
+
+/* STATS */
+.stats{background:var(--charcoal);color:var(--cream)}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}
+.stat .num{font-family:'Fraunces',serif;font-size:clamp(2.8rem,6vw,4.6rem);color:#F2D9A8;font-weight:500;line-height:1}
+.stat .lbl{margin-top:12px;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(251,248,241,.7)}
+.stat .sub{margin-top:6px;color:rgba(251,248,241,.55);font-size:.9rem}
+
+/* TRI BUNARA FEATURE */
+.wells-sec{background:var(--stone-2)}
+.wells-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:20px}
+.well-card{background:var(--cream);border-radius:6px;padding:42px 34px;border:1px solid var(--line);transition:transform .4s,box-shadow .4s}
+.well-card:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(43,38,34,.1)}
+.well-card .ring{width:54px;height:54px;border-radius:50%;border:2px solid var(--brick);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;color:var(--brick);font-size:1.2rem;margin-bottom:24px}
+.well-card h3{font-size:1.5rem;margin-bottom:12px}
+.well-card p{color:var(--muted);font-size:.98rem}
+
+/* MENU */
+.menu{background:var(--cream)}
+.menu-cat{margin-bottom:60px}
+.menu-cat h3{font-size:1.9rem;color:var(--brick);display:flex;align-items:baseline;gap:18px;margin-bottom:30px}
+.menu-cat h3 span{flex:1;height:1px;background:var(--line)}
+.menu-list{display:grid;grid-template-columns:1fr 1fr;gap:30px 56px}
+.menu-item{border-bottom:1px dashed var(--line);padding-bottom:20px}
+.menu-item .top{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.menu-item h4{font-family:'Cormorant',serif;font-size:1.5rem;font-weight:600;color:var(--ink)}
+.menu-item .tag{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);font-weight:600;white-space:nowrap}
+.menu-item p{margin-top:6px;color:var(--muted);font-size:.94rem}
+.menu-note{text-align:center;margin-top:10px;color:var(--muted);font-style:italic;font-family:'Cormorant',serif;font-size:1.2rem}
+
+/* STORY */
+.story{background:var(--brick);color:var(--cream);overflow:hidden}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+.story-text{padding:clamp(60px,9vh,110px) clamp(40px,6vw,90px) clamp(60px,9vh,110px) 0}
+.story-text .eyebrow{color:#F2D9A8}
+.story-text h2{font-size:clamp(2rem,4vw,3.2rem);margin-top:16px;color:var(--cream)}
+.story-text p{margin-top:22px;color:rgba(251,248,241,.88);font-size:1.04rem}
+.story-photo{position:relative;min-height:420px}
+.story-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* GALLERY */
+.gallery{background:var(--stone)}
+.gal-track{display:flex;gap:20px;overflow-x:auto;padding:6px 28px 26px;scroll-snap-type:x mandatory;cursor:grab;scrollbar-width:none}
+.gal-track::-webkit-scrollbar{display:none}
+.gal-track.drag{cursor:grabbing}
+.gal-track img{height:64vh;max-height:520px;width:auto;border-radius:6px;object-fit:cover;scroll-snap-align:center;flex:0 0 auto;pointer-events:none}
+.gal-hint{text-align:center;color:var(--muted);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;margin-top:10px}
+
+/* VISIT */
+.visit{background:var(--cream)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.visit-info h3{font-size:1.4rem;margin:30px 0 8px}
+.visit-info .row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:.96rem}
+.visit-info .row span:first-child{color:var(--muted)}
+.visit-info a.cta{margin-top:30px;display:inline-block}
+.map-wrap{border-radius:6px;overflow:hidden;border:1px solid var(--line);min-height:380px}
+.map-wrap iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
+
+/* FOOTER */
+footer{background:var(--charcoal);color:rgba(251,248,241,.8);padding:80px 0 40px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:50px}
+.foot-brand{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--cream);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.foot-brand .wells{display:flex;gap:4px}
+.foot-brand .wells i{width:8px;height:8px;border-radius:50%;border:1.5px solid #F2D9A8;display:block}
+footer p{font-size:.94rem;max-width:38ch}
+.foot-col h4{font-family:'Inter',sans-serif;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:#F2D9A8;margin-bottom:16px;font-weight:600}
+.foot-col a,.foot-col div{display:block;font-size:.94rem;margin-bottom:9px;color:rgba(251,248,241,.78);transition:color .25s}
+.foot-col a:hover{color:var(--cream)}
+.foot-bot{border-top:1px solid rgba(251,248,241,.14);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:.82rem;color:rgba(251,248,241,.5)}
+
+@media(max-width:900px){
+  .nav-links{position:fixed;inset:0;background:var(--stone);flex-direction:column;justify-content:center;gap:30px;transform:translateX(100%);transition:transform .4s;z-index:90}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:1.2rem}
+  .burger{display:flex;z-index:95}
+  .manifest-grid,.story-grid,.visit-grid{grid-template-columns:1fr;gap:40px}
+  .stats-grid,.wells-grid,.menu-list{grid-template-columns:1fr}
+  .story-text{padding:60px 28px}
+  .story-photo{min-height:320px;order:-1}
+  .hero-wells{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.clip{opacity:1!important;transform:none!important;clip-path:none!important}
+  html{scroll-behavior:auto}
+  .hero-bg img{transform:none}
+}
+</style>
+</head>
+<body>
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="brand"><span class="wells"><i></i><i></i><i></i></span> Tri Bunara</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#prica">Priča</a>
+      <a href="#tri">Tri bunara</a>
+      <a href="#menu">Jelovnik</a>
+      <a href="#galerija">Galerija</a>
+      <a href="#posjeta">Posjeta</a>
+      <a href="tel:+38523250390" class="cta">Rezerviraj</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Izbornik"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=2000&q=80" alt="Pizza iz krušne peći">
+  </div>
+  <div class="hero-wells"><i></i><i></i><i></i></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow hero-eyebrow">Zadar · Stari grad · Od 1976.</p>
+    <h1>Tri bunara,<br>jedna <em>krušna peć</em>.</h1>
+    <p class="lead">Ime nosimo po kamenom trgu u srcu Zadra — mjestu gdje su tri bunara stoljećima napajala stari grad. Mi napajamo glad: tijestom koje zri polako i pizzom pečenom na vatri.</p>
+    <div class="hero-meta">
+      <a href="tel:+38523250390" class="cta">Rezerviraj stol</a>
+      <a href="tel:+38523250390" class="ph">📞 +385 23 250 390</a>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFEST -->
+<section class="manifest pad">
+  <div class="wrap manifest-grid">
+    <div>
+      <p class="eyebrow reveal">Naš zanat</p>
+      <p class="big reveal">Tijesto je strpljivo. <strong>Sazrijeva polako</strong>, dan i noć, dok ne postane lagano, prozračno i lako probavljivo — onakvo kakvo se ne žuri.</p>
+      <p class="reveal">Brašno, voda, malo kvasca, morska sol i vrijeme. To je cijela tajna. Pečemo na pravoj vatri, na visokoj temperaturi, tako da rub naraste, a sredina ostane mekana i mirisna. Svaku pizzu vadimo iz peći tek kad je spremna — ni minutu ranije.</p>
+      <p class="reveal">Uz pizzu, kuhamo i domaću pastu te dalmatinsko-talijanska jela kakva se jedu u obiteljskoj kući: bez pretjerivanja, s mirisom mora i maslinova ulja.</p>
+    </div>
+    <div class="manifest-photo reveal clip">
+      <img src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?auto=format&fit=crop&w=1100&q=80" alt="Mijesenje tijesta">
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats pad">
+  <div class="wrap stats-grid">
+    <div class="stat">
+      <div class="num" data-count="1976" data-suffix="">0</div>
+      <div class="lbl">Otvoreni od</div>
+      <div class="sub">Skoro pola stoljeća pizze</div>
+    </div>
+    <div class="stat">
+      <div class="num" data-count="48" data-suffix="h">0</div>
+      <div class="lbl">Zrenja tijesta</div>
+      <div class="sub">Polako, kako i treba</div>
+    </div>
+    <div class="stat">
+      <div class="num" data-count="3" data-suffix="">0</div>
+      <div class="lbl">Bunara u imenu</div>
+      <div class="sub">Po srcu staroga Zadra</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRI BUNARA -->
+<section class="wells-sec pad" id="tri">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow reveal">Tri bunara</p>
+      <h2 class="reveal">Tri stvari na koje pazimo</h2>
+      <p class="reveal">Kao tri bunara koja su čuvala vodu staroga grada, i mi čuvamo tri stvari koje pizzu čine pizzom.</p>
+    </div>
+    <div class="wells-grid">
+      <div class="well-card reveal">
+        <div class="ring">I</div>
+        <h3>Tijesto</h3>
+        <p>Dugo zrenje na niskoj temperaturi. Lagano, hrskavo na rubu, mekano u sredini — i nakon njega vam nije teško.</p>
+      </div>
+      <div class="well-card reveal">
+        <div class="ring">II</div>
+        <h3>Vatra</h3>
+        <p>Krušna peć na visokoj temperaturi daje onaj miris dima i savršeno zapečen rub koji se ne može odglumiti.</p>
+      </div>
+      <div class="well-card reveal">
+        <div class="ring">III</div>
+        <h3>Namirnice</h3>
+        <p>Pomidora, mozzarella, dalmatinsko maslinovo ulje i sezonsko povrće. Jednostavno i pošteno, bez skrivanja.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu pad" id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow reveal">Jelovnik</p>
+      <h2 class="reveal">Iz peći i iz kuhinje</h2>
+      <p class="reveal">Mali, ali iskren izbor. Sve se peče i kuha po narudžbi.</p>
+    </div>
+
+    <div class="menu-cat">
+      <h3 class="reveal">Pizze <span></span></h3>
+      <div class="menu-list">
+        <div class="menu-item reveal"><div class="top"><h4>Tri Bunara</h4><span class="tag">Kuća</span></div><p>Pomidora, mozzarella, pršut, rikola i hladovi parmezana — naša potpisna, po trgu po kojem nosimo ime.</p></div>
+        <div class="menu-item reveal"><div class="top"><h4>Margherita</h4><span class="tag">Klasik</span></div><p>San Marzano umak, mozzarella, svježi bosiljak i kap maslinova ulja. Mjera svake dobre pizzerije.</p></div>
+        <div class="menu-item reveal"><div class="top"><h4>Dalmatinka</h4><span class="tag">Domaće</span></div><p>Domaća panceta, kozji sir, kapula i listići ružmarina s otoka. Okus zaleđa u jednom zalogaju.</p></div>
+        <div class="menu-item reveal"><div class="top"><h4>Quattro Formaggi</h4><span class="tag"></span></div><p>Mozzarella, gorgonzola, dimljeni sir i parmezan — za one koji vole punije, kremasto.</p></div>
+        <div class="menu-item reveal"><div class="top"><h4>Capricciosa</h4><span class="tag"></span></div><p>Šunka, šampinjoni, artičoke i masline. Stara škola koja nikad ne razočara.</p></div>
+        <div class="menu-item reveal"><div class="top"><h4>Frutti di Mare</h4><span class="tag">More</span></div><p>Plodovi mora s Jadrana, češnjak, peršin i malo ljutoga. Po za stolom uz čašu bijeloga.</p></div>
+      </div>
+    </div>
+
+    <div class="menu-cat">
+      <h3 class="reveal">Pasta <span></span></h3>
+      <div class="menu-list">
+        <div class="menu-item reveal"><div class="top"><h4>Šug od pomidora</h4><span class="tag">Domaće</span></div><p>Spaghetti u sporo kuhanom umaku od rajčice, bosiljka i maslinova ulja. Jednostavno kao kod none.</p></div>
+        <div class="menu-item reveal"><div class="top"><h4>Pašta-šuta na dalmatinski</h4><span class="tag"></span></div><p>Pljukanci s domaćim ragùom od junetine, kuhanim satima dok meso ne omekša.</p></div>
+        <div class="menu-item reveal"><div class="top"><h4>Tagliatelle s plodovima mora</h4><span class="tag">More</span></div><p>Svježa tjestenina, škampi i školjke u laganom umaku od bijeloga vina i češnjaka.</p></div>
+        <div class="menu-item reveal"><div class="top"><h4>Njoki s gorgonzolom</h4><span class="tag"></span></div><p>Domaći njoki u kremastom umaku od plavog sira i oraha. Topla, zimska utjeha.</p></div>
+      </div>
+    </div>
+
+    <p class="menu-note reveal">Pitajte za jela dana — često imamo nešto izvan jelovnika, prema tržnici i sezoni.</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="prica">
+  <div class="wrap story-grid">
+    <div class="story-text">
+      <p class="eyebrow reveal">Naša priča</p>
+      <h2 class="reveal">Po trgu tri bunara</h2>
+      <p class="reveal">U starome Zadru, među venecijanskim zidinama i kamenom uglačanom stoljećima, stoji Trg tri bunara. Tri kamene cisterne nekoć su skupljale i čuvale vodu za cijeli grad — bez njih grad ne bi živio.</p>
+      <p class="reveal">Po tom trgu nosimo ime još od 1976. godine. Htjeli smo da se u imenu čuje Zadar — njegov kamen, njegova povijest i njegova narav: skromna izvana, bogata iznutra.</p>
+      <p class="reveal">Kroz naša vrata prošle su generacije Zadrana i gostiju iz cijeloga svijeta. Recepti su ostali isti, peć je ista, a tijesto i dalje čeka svoje vrijeme. To je sve što znamo i sve što želimo raditi.</p>
+    </div>
+  </div>
+  <div class="story-photo">
+    <img src="https://images.unsplash.com/photo-1558642084-fd07fae5282e?auto=format&fit=crop&w=1100&q=80" alt="Kameni trg staroga Zadra">
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery pad" id="galerija">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow reveal">Galerija</p>
+      <h2 class="reveal">Vatra, kamen, stol</h2>
+    </div>
+  </div>
+  <div class="gal-track" id="galTrack">
+    <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=1000&q=80" alt="Pizza iz krušne peći">
+    <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?auto=format&fit=crop&w=1000&q=80" alt="Pizza margherita">
+    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=80" alt="Tijesto i brašno">
+    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1000&q=80" alt="Rustikalni interijer">
+    <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1000&q=80" alt="Stol s jelima">
+    <img src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=1000&q=80" alt="Kamene ulice Zadra">
+  </div>
+  <p class="gal-hint">← Povucite za više →</p>
+</section>
+
+<!-- VISIT -->
+<section class="visit pad" id="posjeta">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow reveal">Posjeta</p>
+      <h2 class="reveal">Nađite nas u starome gradu</h2>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-info">
+        <h3 class="reveal">Radno vrijeme</h3>
+        <div class="reveal">
+          <div class="row"><span>Ponedjeljak — Petak</span><span>11:00 — 23:00</span></div>
+          <div class="row"><span>Subota</span><span>11:00 — 24:00</span></div>
+          <div class="row"><span>Nedjelja</span><span>12:00 — 23:00</span></div>
+        </div>
+        <h3 class="reveal">Kontakt</h3>
+        <div class="reveal">
+          <div class="row"><span>Telefon</span><span>+385 23 250 390</span></div>
+          <div class="row"><span>E-mail</span><span>tri.bunara@gmail.com</span></div>
+          <div class="row"><span>Adresa</span><span>Stari grad, Zadar</span></div>
+        </div>
+        <a href="tel:+38523250390" class="cta reveal">Rezerviraj stol</a>
+      </div>
+      <div class="map-wrap reveal">
+        <iframe src="https://maps.google.com/maps?q=Pizzeria+Tri+Bunara+Zadar&output=embed" loading="lazy" title="Karta — Pizzeria Tri Bunara Zadar"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><span class="wells"><i></i><i></i><i></i></span> Pizzeria Tri Bunara</div>
+        <p>Pizza iz krušne peći u srcu staroga Zadra, od 1976. Tijesto koje zri polako, vatra koja zna svoj posao.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Stranice</h4>
+        <a href="#prica">Priča</a>
+        <a href="#menu">Jelovnik</a>
+        <a href="#galerija">Galerija</a>
+        <a href="#posjeta">Posjeta</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <a href="tel:+38523250390">+385 23 250 390</a>
+        <a href="mailto:tri.bunara@gmail.com">tri.bunara@gmail.com</a>
+        <div>Stari grad, Zadar</div>
+        <div>Hrvatska</div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Pizzeria Tri Bunara — Zadar. Sva prava pridržana.</span>
+      <span>Od 1976. · Po Trgu tri bunara</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Header scroll state
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>40);});
+
+// Mobile menu
+const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+if(!reduce){
+  // Lenis
+  const lenis=new Lenis({lerp:.09,wheelMultiplier:.95});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf);}requestAnimationFrame(raf);
+  gsap.registerPlugin(ScrollTrigger);
+  lenis.on('scroll',ScrollTrigger.update);
+
+  // Hero bg subtle parallax
+  gsap.to('.hero-bg img',{yPercent:14,scale:1.14,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+  // Reveals
+  gsap.utils.toArray('.reveal').forEach(el=>{
+    gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 86%'}});
+    if(el.classList.contains('clip')){
+      gsap.to(el,{clipPath:'inset(0 0 0% 0)',duration:1.2,ease:'power3.out',
+        scrollTrigger:{trigger:el,start:'top 84%'}});
+    }
+  });
+
+  // Count up
+  gsap.utils.toArray('.num').forEach(el=>{
+    const end=+el.dataset.count, suf=el.dataset.suffix||'';
+    const o={v:0};
+    ScrollTrigger.create({trigger:el,start:'top 88%',once:true,onEnter:()=>{
+      gsap.to(o,{v:end,duration:1.8,ease:'power2.out',onUpdate:()=>{el.textContent=Math.round(o.v)+suf;}});
+    }});
+  });
+}else{
+  document.querySelectorAll('.reveal,.clip').forEach(e=>{e.style.opacity=1;e.style.transform='none';e.style.clipPath='none';});
+}
+
+// Draggable gallery
+const track=document.getElementById('galTrack');
+let down=false,startX,scl;
+track.addEventListener('mousedown',e=>{down=true;track.classList.add('drag');startX=e.pageX-track.offsetLeft;scl=track.scrollLeft;});
+window.addEventListener('mouseup',()=>{down=false;track.classList.remove('drag');});
+track.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();const x=e.pageX-track.offsetLeft;track.scrollLeft=scl-(x-startX)*1.4;});
+</script>
+</body>
+</html>
