@@ -171,7 +171,9 @@
   --muted:#6E6457; --line:rgba(43,38,34,.14);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+/* NE smooth: Lenis sam animira scroll preko window.scrollTo(); nativni smooth
+   bi svaki taj frame dodatno usporio pa scroll puzi i ne stigne do cilja. */
+html{scroll-behavior:auto}
 body{
   font-family:'Inter',sans-serif;background:var(--stone);color:var(--charcoal);
   line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
@@ -336,6 +338,9 @@ footer p{font-size:.94rem;max-width:38ch}
   .burger{display:flex;z-index:95}
   .manifest-grid,.story-grid,.visit-grid{grid-template-columns:1fr;gap:40px}
   .stats-grid,.wells-grid,.menu-list{grid-template-columns:1fr}
+  /* foot-grid je bio izostavljen: 3 kolone traze 385px u kontejneru od 334px
+     na 390px ekranu -> footer vuce stranicu 22px u stranu. */
+  .foot-grid{grid-template-columns:1fr;gap:32px}
   .story-text{padding:60px 28px}
   .story-photo{min-height:320px;order:-1}
   .hero-wells{display:none}
